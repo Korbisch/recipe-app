@@ -1,8 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
-import styles from "@/styles/Home.module.css";
 import React, { SyntheticEvent, useState } from "react";
-import { NavigationBar } from "../../components/NavigationBar";
+import { NavBar } from "../../components/NavBar";
 
 interface Recipe {
   ingredients: string;
@@ -40,9 +39,9 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <NavigationBar />
-        <div className={styles.center}>
+      <main>
+        <NavBar />
+        <div>
           <Image
             src="/eating_together.svg"
             alt="Next.js Logo"
