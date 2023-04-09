@@ -44,24 +44,13 @@ export default function Home() {
         <NavigationBar />
         <div className={styles.center}>
           <Image
-            className={styles.logo}
-            src="/next.svg"
+            src="/eating_together.svg"
             alt="Next.js Logo"
-            width={180}
-            height={37}
+            width={300}
+            height={300}
             priority
           />
-          <div className={styles.thirteen}>
-            <Image
-              src="/thirteen.svg"
-              alt="13"
-              width={40}
-              height={31}
-              priority
-            />
-          </div>
         </div>
-
         <form onSubmit={handleSubmit}>
           <input
             type="text"
