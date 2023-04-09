@@ -1,7 +1,7 @@
 import Head from "next/head";
-import Image from "next/image";
 import React, { SyntheticEvent, useState } from "react";
 import { NavBar } from "../../components/NavBar";
+import { Header } from "../../components/Header";
 
 interface Recipe {
   ingredients: string;
@@ -41,15 +41,7 @@ export default function Home() {
       </Head>
       <main>
         <NavBar />
-        <div>
-          <Image
-            src="/eating_together.svg"
-            alt="Next.js Logo"
-            width={300}
-            height={300}
-            priority
-          />
-        </div>
+        <Header />
         <form onSubmit={handleSubmit}>
           <input
             type="text"

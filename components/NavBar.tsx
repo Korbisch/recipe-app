@@ -52,7 +52,7 @@ export function NavBar() {
   const [userMenuOpened, setUserMenuOpened] = useState(false);
 
   return (
-    <Box pb={120}>
+    <Box>
       <Header height={60} px="md">
         <Group position="apart" sx={{ height: "100%" }}>
           <Group sx={{ height: "100%" }} spacing={0}>
