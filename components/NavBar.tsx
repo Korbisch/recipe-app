@@ -63,7 +63,10 @@ export function NavBar() {
           <Group>
             {!isLoading && !user && (
               <>
-                <Button onClick={() => router.push("/api/auth/login")}>
+                <Button
+                  c="black"
+                  onClick={() => router.push("/api/auth/login")}
+                >
                   Sign up
                 </Button>
                 <Button

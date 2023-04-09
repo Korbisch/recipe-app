@@ -20,8 +20,21 @@ export default function App(props: AppProps) {
         withGlobalStyles
         withNormalizeCSS
         theme={{
-          /** Put your mantine theme override here */
           colorScheme: "light",
+          colors: {
+            "light-yellow": [
+              "#FFFDF1",
+              "#FFF0A5",
+              "#FFE359",
+              "#FFD91B",
+              "#E8C100",
+              "#BE9E00",
+              "#9C8200",
+              "#806A00",
+            ],
+          },
+          primaryShade: 1,
+          primaryColor: "light-yellow",
         }}
       >
         <UserProvider>

@@ -98,6 +98,7 @@ export function Header() {
 
             <Group mt={30}>
               <Button
+                c="black"
                 onClick={() => router.push("/api/auth/login")}
                 radius="xl"
                 size="md"
