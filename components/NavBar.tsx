@@ -99,7 +99,7 @@ export function NavBar() {
                         sx={{ lineHeight: 1 }}
                         mr={3}
                       >
-                        {user.name}
+                        {user.email}
                       </Text>
                       <IconChevronDown size={rem(12)} stroke={1.5} />
                     </Group>
