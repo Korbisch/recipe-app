@@ -7,62 +7,43 @@ import {
   Group,
   Text,
   rem,
+  SimpleGrid,
 } from "@mantine/core";
 import image from "../public/eating_together.svg";
 import { useRouter } from "next/router";
 
 const useStyles = createStyles((theme) => ({
-  inner: {
-    display: "flex",
-    justifyContent: "space-between",
-    paddingTop: `calc(${theme.spacing.xl} * 4)`,
-    paddingBottom: `calc(${theme.spacing.xl} * 4)`,
-
-    [theme.fn.smallerThan("xs")]: {
-      flexDirection: "column-reverse",
-    },
-  },
-
-  content: {
-    maxWidth: rem(480),
-    marginRight: `calc(${theme.spacing.xl} * 3)`,
-
-    [theme.fn.smallerThan("md")]: {
-      maxWidth: rem(300),
-    },
-
-    [theme.fn.smallerThan("xs")]: {
-      maxWidth: "100%",
-      marginRight: 0,
-    },
+  root: {
+    paddingTop: rem(80),
+    paddingBottom: rem(80),
   },
 
   title: {
-    color: theme.colorScheme === "dark" ? theme.white : theme.black,
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-    fontSize: rem(44),
-    lineHeight: 1.2,
     fontWeight: 900,
+    fontSize: rem(34),
+    marginBottom: theme.spacing.md,
+    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
 
-    [theme.fn.smallerThan("xs")]: {
-      fontSize: rem(28),
+    [theme.fn.smallerThan("sm")]: {
+      fontSize: rem(32),
     },
   },
 
   control: {
-    [theme.fn.smallerThan("xs")]: {
-      flex: 1,
+    [theme.fn.smallerThan("sm")]: {
+      width: "100%",
     },
   },
 
-  image: {
-    flex: 1,
-    maxWidth: rem(400),
+  mobileImage: {
+    [theme.fn.largerThan("sm")]: {
+      display: "none",
+    },
+  },
 
-    [theme.fn.smallerThan("xs")]: {
-      marginBottom: rem(30),
-      maxWidth: rem(300),
-      alignSelf: "center",
+  desktopImage: {
+    [theme.fn.smallerThan("sm")]: {
+      display: "none",
     },
   },
 
@@ -82,39 +63,45 @@ export function Header() {
   const router = useRouter();
 
   return (
-    <div>
-      <Container>
-        <div className={classes.inner}>
-          <div className={classes.content}>
-            <Title className={classes.title}>
-              Alle deine{" "}
-              <span className={classes.highlight}>Lieblingsrezepte</span> an
-              einem Ort!
-            </Title>
-            <Text color="dimmed" mt="md">
-              Speichere deine Rezepte an einem Ort und greife von überall auf
-              sie zu!
-            </Text>
-
-            <Group mt={30}>
-              <Button
-                c="black"
-                onClick={() => router.push("/api/auth/login")}
-                radius="xl"
-                size="md"
-                className={classes.control}
-              >
-                Get Started
-              </Button>
-            </Group>
-          </div>
-          <Image
-            src={image.src}
-            className={classes.image}
-            alt={"Header image"}
-          />
+    <Container className={classes.root}>
+      <SimpleGrid
+        spacing={80}
+        cols={2}
+        breakpoints={[{ maxWidth: "sm", cols: 1, spacing: 40 }]}
+      >
+        <Image
+          src={image.src}
+          className={classes.mobileImage}
+          alt={"Header image"}
+        />
+        <div>
+          <Title className={classes.title}>
+            Alle deine{" "}
+            <span className={classes.highlight}>Lieblingsrezepte</span> an einem
+            Ort!
+          </Title>
+          <Text color="dimmed" mt="md">
+            Speichere deine Rezepte an einem Ort und greife von überall auf sie
+            zu!
+          </Text>
+          <Group mt={30}>
+            <Button
+              c="black"
+              onClick={() => router.push("/api/auth/login")}
+              radius="xl"
+              size="md"
+              className={classes.control}
+            >
+              Get Started
+            </Button>
+          </Group>
         </div>
-      </Container>
-    </div>
+        <Image
+          src={image.src}
+          className={classes.desktopImage}
+          alt={"Header image"}
+        />
+      </SimpleGrid>
+    </Container>
   );
 }
