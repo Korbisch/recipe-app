@@ -104,7 +104,7 @@ export function Header() {
                 size="md"
                 className={classes.control}
               >
-                Registrieren
+                Get Started
               </Button>
             </Group>
           </div>

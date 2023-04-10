@@ -67,7 +67,7 @@ export function NavBar() {
                   c="black"
                   onClick={() => router.push("/api/auth/login")}
                 >
-                  Sign up
+                  Get Started
                 </Button>
                 <Button
                   onClick={() => router.push("/api/auth/login")}
