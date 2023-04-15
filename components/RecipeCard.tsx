@@ -1,14 +1,4 @@
-import { IconHeart } from "@tabler/icons-react";
-import {
-  Card,
-  Image,
-  Text,
-  Group,
-  Button,
-  ActionIcon,
-  createStyles,
-  rem,
-} from "@mantine/core";
+import { Card, Image, Text, Group, createStyles, rem } from "@mantine/core";
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -35,6 +25,7 @@ interface RecipeCardProps {
   title: string;
   description: string;
 }
+
 export const RecipeCard = ({ image, title, description }: RecipeCardProps) => {
   const { classes } = useStyles();
 
@@ -54,15 +45,6 @@ export const RecipeCard = ({ image, title, description }: RecipeCardProps) => {
           {description}
         </Text>
       </Card.Section>
-
-      <Group mt="xs">
-        <Button c="black" radius="md" style={{ flex: 1 }}>
-          Show details
-        </Button>
-        <ActionIcon variant="default" radius="md" size={36}>
-          <IconHeart size="1.1rem" className={classes.like} stroke={1.5} />
-        </ActionIcon>
-      </Group>
     </Card>
   );
 };

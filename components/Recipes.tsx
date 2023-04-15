@@ -1,14 +1,12 @@
 import React from "react";
-import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
-import { NavBar } from "../../../components/NavBar";
-import { RecipeCard } from "../../../components/RecipeCard";
-import img from "../../../public/pasta.jpg";
-import { Container, Grid, Skeleton } from "@mantine/core";
+import { RecipeCard } from "./RecipeCard";
+import img from "../public/pasta.jpg";
+import { Button, Container, Grid } from "@mantine/core";
+import { IconPlus } from "@tabler/icons-react";
+import { NavBar } from "./NavBar";
 
-export default withPageAuthRequired(function Recipes() {
+export const Recipes = () => {
   // TODO: checkboxes next to ingredients
-
-  const child = <Skeleton height={140} radius="md" animate={false} />;
 
   const recipes = [
     <RecipeCard
@@ -36,27 +34,23 @@ export default withPageAuthRequired(function Recipes() {
       description={"Nom Nom Nom"}
     />,
   ];
-  console.log(recipes);
 
   return (
     <>
       <NavBar />
-      <h1>Deine Rezepte</h1>
       <Container my="md">
+        <h2>Deine Rezepte</h2>
+        <Button leftIcon={<IconPlus />} variant="default" mb={20}>
+          Rezept hinzufügen
+        </Button>
         <Grid>
           {recipes.map((recipe) => (
-            <Grid.Col key={Math.random()} xs={3}>
+            <Grid.Col key={Math.random()} span={6} md={3} lg={3}>
               {recipe}
             </Grid.Col>
           ))}
-          <Grid.Col xs={3}>{child}</Grid.Col>
-          <Grid.Col xs={3}>{child}</Grid.Col>
-          <Grid.Col xs={3}>{child}</Grid.Col>
-          <Grid.Col xs={3}>{child}</Grid.Col>
-          <Grid.Col xs={3}>{child}</Grid.Col>
-          <Grid.Col xs={3}>{child}</Grid.Col>
         </Grid>
       </Container>
     </>
   );
-});
+};
