@@ -10,6 +10,7 @@ import {
   Text,
   Skeleton,
   MediaQuery,
+  Image,
 } from "@mantine/core";
 import { IconLogout, IconChevronDown } from "@tabler/icons-react";
 import React, { useState } from "react";
@@ -18,7 +19,6 @@ import { useRouter } from "next/router";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import logo from "../public/Logo.png";
 import logoIcon from "../public/Logo-Icon.png";
-import Image from "next/image";
 
 const useStyles = createStyles((theme) => ({
   link: {
@@ -61,10 +61,10 @@ export function NavBar() {
           <Group sx={{ height: "100%" }} spacing={0}>
             <Link href="/" className={classes.link}>
               <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
-                <Image src={logo} alt="Plate Mate Logo" height={50} />
+                <Image src={logo.src} alt="Plate Mate Logo" height={50} />
               </MediaQuery>
               <MediaQuery largerThan="sm" styles={{ display: "none" }}>
-                <Image src={logoIcon} alt="Plate Mate Logo" height={50} />
+                <Image src={logoIcon.src} alt="Plate Mate Logo" height={50} />
               </MediaQuery>
             </Link>
           </Group>

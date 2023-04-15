@@ -36,11 +36,14 @@ const useStyles = createStyles((theme) => ({
     },
   },
 
-  mobileImage: {
-    maxWidth: 300,
+  mobile: {
     [theme.fn.largerThan("sm")]: {
       display: "none",
     },
+  },
+
+  mobileImage: {
+    maxWidth: 300,
   },
 
   desktopImage: {
@@ -71,10 +74,10 @@ export function Header() {
         cols={2}
         breakpoints={[{ maxWidth: "sm", cols: 1, spacing: 40 }]}
       >
-        <Center>
+        <Center className={classes.mobile}>
           <Image
-            src={image.src}
             className={classes.mobileImage}
+            src={image.src}
             alt={"Header image"}
           />
         </Center>
