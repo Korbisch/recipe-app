@@ -61,10 +61,20 @@ export function NavBar() {
           <Group sx={{ height: "100%" }} spacing={0}>
             <Link href="/" className={classes.link}>
               <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
-                <Image src={logo.src} alt="Plate Mate Logo" height={50} />
+                <Image
+                  src={logo.src}
+                  alt="Plate Mate Logo"
+                  width={50}
+                  height={50}
+                />
               </MediaQuery>
               <MediaQuery largerThan="sm" styles={{ display: "none" }}>
-                <Image src={logoIcon.src} alt="Plate Mate Logo" height={50} />
+                <Image
+                  src={logoIcon.src}
+                  alt="Plate Mate Logo"
+                  width={50}
+                  height={50}
+                />
               </MediaQuery>
             </Link>
           </Group>
