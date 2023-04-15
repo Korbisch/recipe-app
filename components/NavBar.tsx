@@ -9,20 +9,22 @@ import {
   UnstyledButton,
   Text,
   Skeleton,
+  MediaQuery,
 } from "@mantine/core";
 import { IconLogout, IconChevronDown } from "@tabler/icons-react";
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import logo from "../public/Logo.png";
+import logoIcon from "../public/Logo-Icon.png";
+import Image from "next/image";
 
 const useStyles = createStyles((theme) => ({
   link: {
     display: "flex",
     alignItems: "center",
     height: "100%",
-    paddingLeft: theme.spacing.md,
-    paddingRight: theme.spacing.md,
     textDecoration: "none",
     color: theme.colorScheme === "dark" ? theme.white : theme.black,
     fontWeight: 500,
@@ -58,7 +60,12 @@ export function NavBar() {
         <Group position="apart" sx={{ height: "100%" }}>
           <Group sx={{ height: "100%" }} spacing={0}>
             <Link href="/" className={classes.link}>
-              PlateMate
+              <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
+                <Image src={logo} alt="Plate Mate Logo" height={50} />
+              </MediaQuery>
+              <MediaQuery largerThan="sm" styles={{ display: "none" }}>
+                <Image src={logoIcon} alt="Plate Mate Logo" height={50} />
+              </MediaQuery>
             </Link>
           </Group>
           <Group>
