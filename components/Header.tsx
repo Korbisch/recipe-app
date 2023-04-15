@@ -8,6 +8,7 @@ import {
   Text,
   rem,
   SimpleGrid,
+  Center,
 } from "@mantine/core";
 import image from "../public/eating_together.svg";
 import { useRouter } from "next/router";
@@ -36,6 +37,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   mobileImage: {
+    maxWidth: 300,
     [theme.fn.largerThan("sm")]: {
       display: "none",
     },
@@ -69,11 +71,13 @@ export function Header() {
         cols={2}
         breakpoints={[{ maxWidth: "sm", cols: 1, spacing: 40 }]}
       >
-        <Image
-          src={image.src}
-          className={classes.mobileImage}
-          alt={"Header image"}
-        />
+        <Center>
+          <Image
+            src={image.src}
+            className={classes.mobileImage}
+            alt={"Header image"}
+          />
+        </Center>
         <div>
           <Title className={classes.title}>
             Alle deine{" "}
