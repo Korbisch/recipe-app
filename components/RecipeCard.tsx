@@ -1,4 +1,5 @@
 import { Card, Image, Text, Group, createStyles, rem } from "@mantine/core";
+import React from "react";
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -23,10 +24,9 @@ const useStyles = createStyles((theme) => ({
 interface RecipeCardProps {
   image: string;
   title: string;
-  description: string;
 }
 
-export const RecipeCard = ({ image, title, description }: RecipeCardProps) => {
+export const RecipeCard: React.FC<RecipeCardProps> = ({ image, title }) => {
   const { classes } = useStyles();
 
   return (
@@ -41,9 +41,6 @@ export const RecipeCard = ({ image, title, description }: RecipeCardProps) => {
             {title}
           </Text>
         </Group>
-        <Text fz="sm" mt="xs">
-          {description}
-        </Text>
       </Card.Section>
     </Card>
   );

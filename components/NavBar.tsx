@@ -64,16 +64,16 @@ export function NavBar() {
                 <Image
                   src={logo.src}
                   alt="Plate Mate Logo"
-                  width={50}
-                  height={50}
+                  mah={50}
+                  maw={200}
                 />
               </MediaQuery>
               <MediaQuery largerThan="sm" styles={{ display: "none" }}>
                 <Image
                   src={logoIcon.src}
                   alt="Plate Mate Logo"
-                  width={50}
-                  height={50}
+                  maw={50}
+                  mah={50}
                 />
               </MediaQuery>
             </Link>
