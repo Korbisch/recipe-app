@@ -2,7 +2,7 @@ import React from "react";
 import { RecipeCard } from "./RecipeCard";
 import { Button, Container, Grid } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
-import { NavBar } from "./NavBar";
+import { NavBar } from "../NavBar";
 import Link from "next/link";
 import { Recipe } from "@/pages/_app";
 

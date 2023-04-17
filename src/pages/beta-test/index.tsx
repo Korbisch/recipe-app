@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { NavBar } from "../../../components/NavBar";
 import React from "react";
-import { PrivateBeta } from "../../../components/PrivateBeta";
+import { PrivateBetaPage } from "../../../components/PrivateBetaPage";
 
 export default function BetaTest() {
   return (
@@ -14,7 +14,7 @@ export default function BetaTest() {
       </Head>
       <main>
         <NavBar />
-        <PrivateBeta />
+        <PrivateBetaPage />
       </main>
     </>
   );

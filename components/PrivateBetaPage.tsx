@@ -47,7 +47,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function PrivateBeta() {
+export function PrivateBetaPage() {
   const { classes } = useStyles();
   const router = useRouter();
 

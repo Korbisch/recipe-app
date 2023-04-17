@@ -10,7 +10,7 @@ import {
   SimpleGrid,
   Center,
 } from "@mantine/core";
-import image from "../public/eating_together.svg";
+import image from "../../public/eating_together.svg";
 import { useRouter } from "next/router";
 
 const useStyles = createStyles((theme) => ({
