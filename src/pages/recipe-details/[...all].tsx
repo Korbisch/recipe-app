@@ -1,13 +1,13 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { NavBar } from "../../../components/NavBar";
-import { Button, Container, Flex, Image } from "@mantine/core";
-import { IconArrowBack } from "@tabler/icons-react";
+import { Container, Image } from "@mantine/core";
 import { Servings } from "../../../components/RecipeDetails/Servings";
 import { Ingredients } from "../../../components/RecipeDetails/Ingredients";
 import { Instructions } from "../../../components/RecipeDetails/Instructions";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import { Recipe } from "@/pages/_app";
+import { TitleWithBackButton } from "../../../components/TitleWithBackButton";
 
 export default withPageAuthRequired(function RecipeDetailsPage({
   recipes,
@@ -23,16 +23,7 @@ export default withPageAuthRequired(function RecipeDetailsPage({
     <>
       <NavBar />
       <Container my="md">
-        <Flex justify="space-between" align="center">
-          <h2>{recipe.title}</h2>
-          <Button
-            leftIcon={<IconArrowBack />}
-            variant={"default"}
-            onClick={() => router.back()}
-          >
-            Zurück
-          </Button>
-        </Flex>
+        <TitleWithBackButton title={recipe.title} />
         <Image
           src={recipe.image}
           mb={20}
