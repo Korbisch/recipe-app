@@ -14,9 +14,11 @@ export const RecipeList = ({ recipes }: { recipes: Recipe[] }) => {
       <NavBar />
       <Container my="md">
         <h2>Deine Rezepte</h2>
-        <Button leftIcon={<IconPlus />} variant="default" mb={20}>
-          Rezept hinzufügen
-        </Button>
+        <Link href={"/add-recipe"} style={{ textDecoration: "none" }}>
+          <Button leftIcon={<IconPlus />} variant="default" mb={20}>
+            Rezept hinzufügen
+          </Button>
+        </Link>
         <Grid>
           {recipes.map((recipe) => (
             <Grid.Col key={recipe.id} span={6} md={3} lg={3}>
