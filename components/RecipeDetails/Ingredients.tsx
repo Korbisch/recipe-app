@@ -1,10 +1,10 @@
 import { ActionIcon, Card, Center, Grid, Text } from "@mantine/core";
 import { IconPaperBag } from "@tabler/icons-react";
 import React, { FC } from "react";
-import { Ingredient } from "@/pages/_app";
+import { RecipeIngredient } from "@/pages/_app";
 
 interface IngredientsProps {
-  ingredients: Ingredient[];
+  ingredients: RecipeIngredient[];
 }
 
 export const Ingredients: FC<IngredientsProps> = ({ ingredients }) => {

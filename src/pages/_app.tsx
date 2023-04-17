@@ -11,23 +11,23 @@ export interface Recipe {
   title: string;
   details: {
     servings: number;
-    ingredients: Ingredient[];
-    instructions: Instruction[];
+    ingredients: RecipeIngredient[];
+    instructions: RecipeInstruction[];
   };
 }
 
-export interface Ingredient {
+export interface RecipeIngredient {
   amount: string;
   unit: string;
   name: string;
 }
 
-export interface Instruction {
-  ingredients: Ingredient[];
+export interface RecipeInstruction {
+  ingredients: RecipeIngredient[];
   description: string;
 }
 
-const ingredients: Ingredient[] = Array(4).fill({
+const ingredients: RecipeIngredient[] = Array(4).fill({
   amount: "100",
   unit: "g",
   name: "Mehl",
@@ -54,7 +54,7 @@ export default function App(props: AppProps) {
   return (
     <>
       <Head>
-        <title>Page title</title>
+        <title>PlateMate</title>
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"

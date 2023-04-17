@@ -4,7 +4,7 @@ import { IconPlus } from "@tabler/icons-react";
 import { randomId } from "@mantine/hooks";
 import { UseFormReturnType } from "@mantine/form";
 import { FormValues } from "@/pages/add-recipe";
-import { Ingredient } from "@/pages/_app";
+import { RecipeIngredient } from "@/pages/_app";
 import { IngredientInputForm } from "./IngredientInputForm";
 
 export enum IngredientInputGridColumns {
@@ -16,7 +16,7 @@ export enum IngredientInputGridColumns {
 
 export const IngredientInputSection = (props: {
   form: UseFormReturnType<FormValues, (values: FormValues) => FormValues>;
-  defaultIngredientValues: Ingredient;
+  defaultIngredientValues: RecipeIngredient;
 }) => {
   const ingredientInputFields = props.form.values.ingredients.map(
     (item, index) => (

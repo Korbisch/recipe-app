@@ -8,7 +8,7 @@ import { IngredientInputGridColumns } from "./IngredientInputSection";
 const useStyles = createStyles(() => ({
   center: {
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "flex-end",
     alignItems: "center",
   },
 }));
