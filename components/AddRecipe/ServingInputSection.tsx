@@ -23,9 +23,10 @@ export function ServingInputSection({
         <ActionIcon
           size={42}
           variant="default"
-          onClick={() =>
-            form.setFieldValue("servings", form.values.servings - 1)
-          }
+          onClick={() => {
+            const servings = form.values.servings;
+            servings > 1 && form.setFieldValue("servings", servings - 1);
+          }}
         >
           <IconMinus />
         </ActionIcon>

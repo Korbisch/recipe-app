@@ -1,28 +1,14 @@
 import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import { NavBar } from "../../components/NavBar";
 import React from "react";
-import {
-  ActionIcon,
-  Badge,
-  Button,
-  Center,
-  Container,
-  FileInput,
-  Flex,
-  Group,
-  MultiSelect,
-  Text,
-  Textarea,
-  TextInput,
-} from "@mantine/core";
-import { IconPlus, IconSalad, IconTrash } from "@tabler/icons-react";
+import { Button, Center, Container, FileInput, TextInput } from "@mantine/core";
+import { IconSalad } from "@tabler/icons-react";
 import { TitleWithBackButton } from "../../components/TitleWithBackButton";
 import { useForm } from "@mantine/form";
 import { randomId } from "@mantine/hooks";
 import { IngredientInputSection } from "../../components/AddRecipe/IngredientInputSection/IngredientInputSection";
 import { ServingInputSection } from "../../components/AddRecipe/ServingInputSection";
-
-// TODO: do not zoom on focus
+import { InstructionInputSection } from "../../components/AddRecipe/InstructionInputSection/InstructionInputSection";
 
 export interface FormValues {
   servings: number;
@@ -31,6 +17,11 @@ export interface FormValues {
     amount: string;
     unit: string;
     name: string;
+    key: string;
+  }[];
+  instructions: {
+    description: string;
+    ingredientIndices: number[];
     key: string;
   }[];
 }
@@ -42,7 +33,7 @@ export default withPageAuthRequired(function AddRecipe() {
     name: "",
   };
 
-  const form = useForm({
+  const form = useForm<FormValues>({
     initialValues: {
       name: "",
       servings: 2,
@@ -52,15 +43,13 @@ export default withPageAuthRequired(function AddRecipe() {
           key: randomId(),
         },
       ],
+      instructions: [
+        { description: "", ingredientIndices: [], key: randomId() },
+      ],
     },
-  });
-
-  const ingredientSelectorValues = form.values.ingredients.map((ingredient) => {
-    const formattedIngredient = `${ingredient.amount} ${ingredient.unit} ${ingredient.name}`;
-    return {
-      value: ingredient.key,
-      label: formattedIngredient,
-    };
+    validate: {
+      servings: (value) => (value < 2 ? "Invalid Servings" : null),
+    },
   });
 
   return (
@@ -85,40 +74,7 @@ export default withPageAuthRequired(function AddRecipe() {
             defaultIngredientValues={defaultIngredientValues}
           />
 
-          <h3>Schritte</h3>
-
-          <Group position="apart">
-            <Badge variant="filled" size="xl" radius="sm">
-              <Text size="xl" color="black">
-                {1}
-              </Text>
-            </Badge>
-            <ActionIcon onClick={() => null}>
-              <IconTrash color="red" size="1rem" />
-            </ActionIcon>
-          </Group>
-          <Textarea
-            placeholder="Mehl mixen bis staubig."
-            label="Beschreibung"
-            autosize
-            minRows={3}
-          />
-          <MultiSelect
-            style={{ flexGrow: 1 }}
-            data={ingredientSelectorValues}
-            label="Zutaten"
-            placeholder="Wähle alle Zutaten für diesen Schritt"
-          />
-          <Flex justify="flex-end">
-            <Button
-              mt={20}
-              leftIcon={<IconPlus />}
-              variant="default"
-              onClick={() => null}
-            >
-              Schritt
-            </Button>
-          </Flex>
+          <InstructionInputSection form={form} />
 
           <Center>
             <Button c="black" mt={20} type="submit">
