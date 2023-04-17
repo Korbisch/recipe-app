@@ -1,19 +1,15 @@
 import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import { NavBar } from "../../components/NavBar";
 import React from "react";
-import {
-  Button,
-  Center,
-  Container,
-  NumberInput,
-  Textarea,
-  TextInput,
-} from "@mantine/core";
-import { IconSalad, IconUsers } from "@tabler/icons-react";
+import { Button, Center, Container, Textarea, TextInput } from "@mantine/core";
+import { IconSalad } from "@tabler/icons-react";
 import { TitleWithBackButton } from "../../components/TitleWithBackButton";
 import { useForm } from "@mantine/form";
 import { randomId } from "@mantine/hooks";
-import { IngredientInputSection } from "../../components/IngredientInputSection/IngredientInputSection";
+import { IngredientInputSection } from "../../components/AddRecipe/IngredientInputSection/IngredientInputSection";
+import { ServingInputSection } from "../../components/AddRecipe/ServingInputSection";
+
+// TODO: do not zoom on focus
 
 export interface FormValues {
   servings: number;
@@ -59,14 +55,7 @@ export default withPageAuthRequired(function AddRecipe() {
             {...form.getInputProps("name")}
           />
 
-          <NumberInput
-            icon={<IconUsers />}
-            defaultValue={2}
-            min={1}
-            placeholder="Portionen"
-            label="Portionen"
-            {...form.getInputProps("servings")}
-          />
+          <ServingInputSection form={form} />
 
           <IngredientInputSection
             form={form}
