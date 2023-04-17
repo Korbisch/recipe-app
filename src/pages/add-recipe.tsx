@@ -5,17 +5,15 @@ import {
   Button,
   Center,
   Container,
-  Grid,
   NumberInput,
   Textarea,
   TextInput,
-  Text,
 } from "@mantine/core";
-import { IconPlus, IconSalad, IconUsers } from "@tabler/icons-react";
+import { IconSalad, IconUsers } from "@tabler/icons-react";
 import { TitleWithBackButton } from "../../components/TitleWithBackButton";
 import { useForm } from "@mantine/form";
 import { randomId } from "@mantine/hooks";
-import { IngredientInput } from "../../components/IngredientInput";
+import { IngredientInputSection } from "../../components/IngredientInputSection/IngredientInputSection";
 
 export interface FormValues {
   servings: number;
@@ -48,10 +46,6 @@ export default withPageAuthRequired(function AddRecipe() {
     },
   });
 
-  const ingredientInputFields = form.values.ingredients.map((item, index) => (
-    <IngredientInput key={item.key} form={form} index={index} />
-  ));
-
   return (
     <>
       <NavBar />
@@ -74,41 +68,10 @@ export default withPageAuthRequired(function AddRecipe() {
             {...form.getInputProps("servings")}
           />
 
-          {/*<IngredientInputSection form={} />*/}
-
-          <h3>Zutaten</h3>
-          <Grid grow gutter="xs">
-            <Grid.Col span={2}>
-              <Text weight={500} size="sm">
-                Menge
-              </Text>
-            </Grid.Col>
-            <Grid.Col span={2}>
-              <Text weight={500} size="sm">
-                Einheit
-              </Text>
-            </Grid.Col>
-            <Grid.Col span={8}>
-              <Text weight={500} size="sm">
-                Zutat
-              </Text>
-            </Grid.Col>
-          </Grid>
-          {ingredientInputFields}
-          <Button
-            c="black"
-            leftIcon={<IconPlus />}
-            variant="default"
-            mt={20}
-            onClick={() =>
-              form.insertListItem("ingredients", {
-                ...defaultIngredientValues,
-                key: randomId(),
-              })
-            }
-          >
-            Zutat hinzufügen
-          </Button>
+          <IngredientInputSection
+            form={form}
+            defaultIngredientValues={defaultIngredientValues}
+          />
 
           <Center>
             <Button c="black" mt={20} type="submit">
