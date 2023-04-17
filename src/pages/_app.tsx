@@ -2,6 +2,51 @@ import { UserProvider } from "@auth0/nextjs-auth0/client";
 import { AppProps } from "next/app";
 import Head from "next/head";
 import { MantineProvider } from "@mantine/core";
+import { v4 as uuidv4 } from "uuid";
+import img from "../../public/pasta.jpg";
+
+export interface Recipe {
+  id: string;
+  image: string;
+  title: string;
+  details: {
+    servings: number;
+    ingredients: Ingredient[];
+    instructions: Instruction[];
+  };
+}
+
+export interface Ingredient {
+  amount: string;
+  unit: string;
+  name: string;
+}
+
+export interface Instruction {
+  ingredients: Ingredient[];
+  description: string;
+}
+
+const ingredients: Ingredient[] = Array(4).fill({
+  amount: "100",
+  unit: "g",
+  name: "Mehl",
+});
+
+const recipes: Recipe[] = Array(5).fill({
+  id: uuidv4(),
+  image: img.src,
+  title: "My First Recipe",
+  details: {
+    servings: 3,
+    ingredients,
+    instructions: Array(6).fill({
+      ingredients,
+      description:
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
+    }),
+  },
+} as Recipe);
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
@@ -38,7 +83,7 @@ export default function App(props: AppProps) {
         }}
       >
         <UserProvider>
-          <Component {...pageProps} />
+          <Component {...pageProps} recipes={recipes} />
         </UserProvider>
       </MantineProvider>
     </>

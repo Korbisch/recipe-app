@@ -1,7 +1,7 @@
 import { ActionIcon, Card, Center, Grid, Text } from "@mantine/core";
 import { IconPaperBag } from "@tabler/icons-react";
 import React, { FC } from "react";
-import { Ingredient } from "../Recipes";
+import { Ingredient } from "@/pages/_app";
 
 interface IngredientsProps {
   ingredients: Ingredient[];

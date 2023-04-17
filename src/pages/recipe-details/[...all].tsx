@@ -1,23 +1,24 @@
-import { Recipe } from "../Recipes";
-import React, { FC } from "react";
+import React from "react";
+import { useRouter } from "next/router";
+import { NavBar } from "../../../components/NavBar";
 import { Button, Container, Flex, Image } from "@mantine/core";
-import { NavBar } from "../NavBar";
 import { IconArrowBack } from "@tabler/icons-react";
-import { Servings } from "./Servings";
-import { Ingredients } from "./Ingredients";
-import { Instructions } from "./Instructions";
+import { Servings } from "../../../components/RecipeDetails/Servings";
+import { Ingredients } from "../../../components/RecipeDetails/Ingredients";
+import { Instructions } from "../../../components/RecipeDetails/Instructions";
+import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
+import { Recipe } from "@/pages/_app";
 
-interface RecipeDetailsProps {
-  recipe: Recipe;
-  onBackButtonClick: () => void;
-}
+export default withPageAuthRequired(function RecipeDetailsPage({
+  recipes,
+}: {
+  recipes: Recipe[];
+}) {
+  const router = useRouter();
+  const queryId = router.query.all && router.query.all[0];
 
-// TODO: create a PageWrapper with Navbar and container md
+  const recipe = recipes.find((recipe) => recipe.id === queryId) as Recipe;
 
-export const RecipeDetails: FC<RecipeDetailsProps> = ({
-  recipe,
-  onBackButtonClick,
-}) => {
   return (
     <>
       <NavBar />
@@ -27,7 +28,7 @@ export const RecipeDetails: FC<RecipeDetailsProps> = ({
           <Button
             leftIcon={<IconArrowBack />}
             variant={"default"}
-            onClick={onBackButtonClick}
+            onClick={() => router.back()}
           >
             Zurück
           </Button>
@@ -44,4 +45,4 @@ export const RecipeDetails: FC<RecipeDetailsProps> = ({
       </Container>
     </>
   );
-};
+});

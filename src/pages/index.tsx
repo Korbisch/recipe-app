@@ -3,10 +3,11 @@ import React from "react";
 import { NavBar } from "../../components/NavBar";
 import { Header } from "../../components/Header";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import { Recipes } from "../../components/Recipes";
+import { RecipeList } from "../../components/RecipeList";
 import { LoadingPage } from "../../components/LoadingPage";
+import { Recipe } from "@/pages/_app";
 
-export default function Home() {
+export default function Home({ recipes }: { recipes: Recipe[] }) {
   const { user, isLoading } = useUser();
 
   if (isLoading) {
@@ -14,7 +15,7 @@ export default function Home() {
   }
 
   if (user) {
-    return <Recipes />;
+    return <RecipeList recipes={recipes} />;
   }
 
   return (

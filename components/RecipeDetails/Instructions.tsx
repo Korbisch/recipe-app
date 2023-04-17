@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { Badge, Card, Flex, Grid, Text } from "@mantine/core";
-import { Instruction } from "../Recipes";
+import { Instruction } from "@/pages/_app";
 
 interface InstructionsProps {
   instructions: Instruction[];
