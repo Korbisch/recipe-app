@@ -16,7 +16,10 @@ export const InstructionInputForm = (props: {
   form: UseFormReturnType<FormValues, (values: FormValues) => FormValues>;
   index: number;
 }) => {
-  const ingredientSelectorValues = props.form.values.ingredients.map(
+  const filteredIngredients = props.form.values.ingredients.filter(
+    (ingredient) => ingredient.name !== ""
+  );
+  const ingredientSelectorValues = filteredIngredients.map(
     (ingredient, index) => {
       const formattedIngredient = `${ingredient.amount} ${ingredient.unit} ${ingredient.name}`;
       return {
@@ -49,6 +52,7 @@ export const InstructionInputForm = (props: {
       />
       <MultiSelect
         style={{ flexGrow: 1 }}
+        disabled={ingredientSelectorValues.length < 1}
         data={ingredientSelectorValues}
         label="Zutaten"
         placeholder="Wähle alle Zutaten für diesen Schritt"
