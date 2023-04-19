@@ -1,6 +1,5 @@
 import React from "react";
-import { NavBar } from "../../../components/NavBar";
-import { Container, Image } from "@mantine/core";
+import { Image } from "@mantine/core";
 import { Servings } from "../../../components/RecipeDetails/Servings";
 import { Ingredients } from "../../../components/RecipeDetails/Ingredients";
 import { Instructions } from "../../../components/RecipeDetails/Instructions";
@@ -23,24 +22,21 @@ export default withPageAuthRequired(function RecipeDetailsPage() {
 
   return (
     <>
-      <NavBar />
-      <Container my="md">
-        <TitleWithBackButton title={recipe.name} />
-        {recipe.image && (
-          <Image
-            src={recipe.image}
-            mb={20}
-            radius="md"
-            alt={`Bild des Rezept ${recipe.name}`}
-          />
-        )}
-        <Servings count={recipe.servings} />
-        <Ingredients ingredients={recipe.ingredients} />
-        <Instructions
-          instructions={recipe.instructions}
-          ingredients={recipe.ingredients}
+      <TitleWithBackButton title={recipe.name} />
+      {recipe.image && (
+        <Image
+          src={recipe.image}
+          mb={20}
+          radius="md"
+          alt={`Bild des Rezept ${recipe.name}`}
         />
-      </Container>
+      )}
+      <Servings count={recipe.servings} />
+      <Ingredients ingredients={recipe.ingredients} />
+      <Instructions
+        instructions={recipe.instructions}
+        ingredients={recipe.ingredients}
+      />
     </>
   );
 });

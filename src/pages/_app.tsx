@@ -4,6 +4,7 @@ import Head from "next/head";
 import { MantineProvider } from "@mantine/core";
 import React from "react";
 import { RecipeProvider } from "../../state/useRecipeContext";
+import { Layout } from "../../components/Layout";
 
 export interface User {
   id: string;
@@ -69,7 +70,9 @@ export default function App(props: AppProps) {
       >
         <UserProvider>
           <RecipeProvider>
-            <Component {...pageProps} />
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
           </RecipeProvider>
         </UserProvider>
       </MantineProvider>

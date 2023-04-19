@@ -1,7 +1,6 @@
 import React from "react";
-import { Button, Container } from "@mantine/core";
+import { Button } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
-import { NavBar } from "../../../components/NavBar";
 import Link from "next/link";
 import { Recipe } from "@/pages/_app";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
@@ -14,16 +13,13 @@ export default withPageAuthRequired(function Recipes({
 }) {
   return (
     <>
-      <NavBar />
-      <Container my="md">
-        <h2>Deine Rezepte</h2>
-        <Link href={"/add-recipe"} style={{ textDecoration: "none" }}>
-          <Button leftIcon={<IconPlus />} variant="default" mb={20}>
-            Rezept hinzufügen
-          </Button>
-        </Link>
-        <RecipeList recipes={recipes} />
-      </Container>
+      <h2>Deine Rezepte</h2>
+      <Link href={"/add-recipe"} style={{ textDecoration: "none" }}>
+        <Button leftIcon={<IconPlus />} variant="default" mb={20}>
+          Rezept hinzufügen
+        </Button>
+      </Link>
+      <RecipeList recipes={recipes} />
     </>
   );
 });

@@ -1,7 +1,6 @@
 import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
-import { NavBar } from "../../components/NavBar";
 import React from "react";
-import { Button, Center, Container, FileInput, TextInput } from "@mantine/core";
+import { Button, Center, FileInput, TextInput } from "@mantine/core";
 import { IconSalad } from "@tabler/icons-react";
 import { TitleWithBackButton } from "../../components/TitleWithBackButton";
 import { useForm } from "@mantine/form";
@@ -54,35 +53,32 @@ export default withPageAuthRequired(function AddRecipe() {
 
   return (
     <>
-      <NavBar />
-      <Container my="md">
-        <TitleWithBackButton title="Neues Rezept" />
-        <form onSubmit={form.onSubmit((values) => console.log(values))}>
-          <TextInput
-            label="Name"
-            icon={<IconSalad />}
-            placeholder="Name"
-            {...form.getInputProps("name")}
-          />
+      <TitleWithBackButton title="Neues Rezept" />
+      <form onSubmit={form.onSubmit((values) => console.log(values))}>
+        <TextInput
+          label="Name"
+          icon={<IconSalad />}
+          placeholder="Name"
+          {...form.getInputProps("name")}
+        />
 
-          <ServingInputSection form={form} />
+        <ServingInputSection form={form} />
 
-          <FileInput mt={10} placeholder="schweinebraten.jpg" label="Bild" />
+        <FileInput mt={10} placeholder="schweinebraten.jpg" label="Bild" />
 
-          <IngredientInputSection
-            form={form}
-            defaultIngredientValues={defaultIngredientValues}
-          />
+        <IngredientInputSection
+          form={form}
+          defaultIngredientValues={defaultIngredientValues}
+        />
 
-          <InstructionInputSection form={form} />
+        <InstructionInputSection form={form} />
 
-          <Center>
-            <Button c="black" mt={20} type="submit">
-              Rezept speichern
-            </Button>
-          </Center>
-        </form>
-      </Container>
+        <Center>
+          <Button c="black" mt={20} type="submit">
+            Rezept speichern
+          </Button>
+        </Center>
+      </form>
     </>
   );
 });

@@ -1,7 +1,6 @@
 import Head from "next/head";
-import { NavBar } from "../../../components/NavBar";
 import React from "react";
-import { PrivateBetaPage } from "../../../components/PrivateBetaPage";
+import { PrivateBetaPage } from "../../components/PrivateBetaPage";
 
 export default function BetaTest() {
   return (
@@ -13,7 +12,6 @@ export default function BetaTest() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <NavBar />
         <PrivateBetaPage />
       </main>
     </>

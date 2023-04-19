@@ -14,8 +14,7 @@ interface RecipeContextValue {
 
 const RecipeContext = createContext<RecipeContextValue | undefined>(undefined);
 
-// @ts-ignore
-export const RecipeProvider = ({ children }) => {
+export const RecipeProvider = ({ children }: { children: React.ReactNode }) => {
   const [recipes, setRecipes] = useState<Recipe[] | null>(null);
   return (
     <RecipeContext.Provider value={{ recipes, setRecipes }}>
