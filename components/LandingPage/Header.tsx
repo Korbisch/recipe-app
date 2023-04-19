@@ -12,6 +12,7 @@ import {
 } from "@mantine/core";
 import image from "../../public/eating_together.svg";
 import { useRouter } from "next/router";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -66,6 +67,7 @@ const useStyles = createStyles((theme) => ({
 export function Header() {
   const { classes } = useStyles();
   const router = useRouter();
+  const { isLoading } = useUser();
 
   return (
     <Container className={classes.root}>
@@ -98,6 +100,7 @@ export function Header() {
               radius="xl"
               size="md"
               className={classes.control}
+              disabled={isLoading}
             >
               Get Started
             </Button>

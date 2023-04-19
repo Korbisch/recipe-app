@@ -4,13 +4,13 @@ import { NavBar } from "../../components/NavBar";
 import { Header } from "../../components/LandingPage/Header";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { RecipeList } from "../../components/RecipeList/RecipeList";
-import { LoadingPage } from "../../components/LoadingPage";
 import { Recipe } from "@/pages/_app";
+import { LoadingPage } from "../../components/LoadingPage";
 
 export default function Home({ recipes }: { recipes: Recipe[] }) {
   const { user, isLoading } = useUser();
 
-  if (isLoading) {
+  if (!user && isLoading) {
     return <LoadingPage />;
   }
 

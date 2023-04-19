@@ -8,7 +8,6 @@ import {
   Menu,
   UnstyledButton,
   Text,
-  Skeleton,
   MediaQuery,
   Image,
 } from "@mantine/core";
@@ -79,13 +78,7 @@ export function NavBar() {
             </Link>
           </Group>
           <Group>
-            {isLoading && (
-              <>
-                <Skeleton height={36} width={115} radius="sm" />
-                <Skeleton height={36} width={78} radius="sm" />
-              </>
-            )}
-            {!isLoading && !user && (
+            {!user && (
               <>
                 <Button
                   c="black"
@@ -96,6 +89,7 @@ export function NavBar() {
                 <Button
                   onClick={() => router.push("/api/auth/login")}
                   variant="default"
+                  disabled={isLoading}
                 >
                   Log in
                 </Button>
