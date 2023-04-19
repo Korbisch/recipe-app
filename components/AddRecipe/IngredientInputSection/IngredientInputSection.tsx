@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Grid, Text } from "@mantine/core";
+import { Box, Button, Grid, Text } from "@mantine/core";
 import React from "react";
 import { IconPlus } from "@tabler/icons-react";
 import { randomId } from "@mantine/hooks";
@@ -51,21 +51,19 @@ export const IngredientInputSection = (props: {
         </Grid.Col>
       </Grid>
       {ingredientInputFields}
-      <Flex justify="flex-end">
-        <Button
-          mt={20}
-          leftIcon={<IconPlus />}
-          variant="default"
-          onClick={() =>
-            props.form.insertListItem("ingredients", {
-              ...props.defaultIngredientValues,
-              key: randomId(),
-            })
-          }
-        >
-          Zutat
-        </Button>
-      </Flex>
+      <Button
+        mt={20}
+        leftIcon={<IconPlus />}
+        variant="default"
+        onClick={() =>
+          props.form.insertListItem("ingredients", {
+            ...props.defaultIngredientValues,
+            key: randomId(),
+          })
+        }
+      >
+        Zutat
+      </Button>
     </>
   );
 };

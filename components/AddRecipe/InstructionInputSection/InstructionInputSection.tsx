@@ -1,4 +1,4 @@
-import { Button, Flex } from "@mantine/core";
+import { Button } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
 import React from "react";
 import { UseFormReturnType } from "@mantine/form";
@@ -19,22 +19,20 @@ export const InstructionInputSection = (props: {
     <>
       <h3>Schritte</h3>
       {instructionInputFields}
-      <Flex justify="flex-end">
-        <Button
-          mt={20}
-          leftIcon={<IconPlus />}
-          variant="default"
-          onClick={() =>
-            props.form.insertListItem("instructions", {
-              description: "",
-              ingredientIndices: [],
-              key: randomId(),
-            })
-          }
-        >
-          Schritt
-        </Button>
-      </Flex>
+      <Button
+        mt={20}
+        leftIcon={<IconPlus />}
+        variant="default"
+        onClick={() =>
+          props.form.insertListItem("instructions", {
+            description: "",
+            ingredientIndices: [],
+            key: randomId(),
+          })
+        }
+      >
+        Schritt
+      </Button>
     </>
   );
 };
