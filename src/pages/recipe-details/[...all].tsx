@@ -24,12 +24,14 @@ export default withPageAuthRequired(function RecipeDetailsPage({
       <NavBar />
       <Container my="md">
         <TitleWithBackButton title={recipe.title} />
-        <Image
-          src={recipe.image}
-          mb={20}
-          radius="md"
-          alt={`Bild des Rezept ${recipe.title}`}
-        />
+        {recipe.image && (
+          <Image
+            src={recipe.image}
+            mb={20}
+            radius="md"
+            alt={`Bild des Rezept ${recipe.title}`}
+          />
+        )}
         <Servings count={recipe.details.servings} />
         <Ingredients ingredients={recipe.details.ingredients} />
         <Instructions instructions={recipe.details.instructions} />

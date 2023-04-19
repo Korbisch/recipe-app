@@ -1,10 +1,19 @@
-import { Card, Image, Text, Group, createStyles, rem } from "@mantine/core";
+import {
+  Card,
+  Image,
+  Text,
+  Group,
+  createStyles,
+  rem,
+  Center,
+} from "@mantine/core";
 import React from "react";
+import { IconSalad } from "@tabler/icons-react";
 
 const useStyles = createStyles((theme) => ({
   card: {
     backgroundColor:
-      theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
+      theme.colorScheme === "dark" ? theme.colors.dark[7] : "#f8f8f8",
   },
 
   section: {
@@ -22,7 +31,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 interface RecipeCardProps {
-  image: string;
+  image?: string;
   title: string;
 }
 
@@ -31,10 +40,20 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({ image, title }) => {
 
   return (
     <Card withBorder radius="md" p="md" className={classes.card}>
-      <Card.Section>
-        <Image src={image} alt={title} height={180} />
+      <Card.Section withBorder>
+        {image ? (
+          <Image src={image} alt={title} height={180} />
+        ) : (
+          <Center>
+            <IconSalad
+              height={180}
+              size={60}
+              strokeWidth={1.5}
+              color={"#b3c6e6"}
+            />
+          </Center>
+        )}
       </Card.Section>
-
       <Card.Section className={classes.section} mt="md">
         <Group position="apart">
           <Text fz="lg" fw={500}>
