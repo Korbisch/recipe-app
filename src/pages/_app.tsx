@@ -2,18 +2,23 @@ import { UserProvider } from "@auth0/nextjs-auth0/client";
 import { AppProps } from "next/app";
 import Head from "next/head";
 import { MantineProvider } from "@mantine/core";
-import { v4 as uuidv4 } from "uuid";
-import img from "../../public/pasta.jpg";
+import React from "react";
+
+export interface User {
+  id: string;
+  email: string;
+  name: string;
+  created_at: string;
+  recipes: Recipe[];
+}
 
 export interface Recipe {
-  id: string;
+  _id: string;
   image: string;
-  title: string;
-  details: {
-    servings: number;
-    ingredients: RecipeIngredient[];
-    instructions: RecipeInstruction[];
-  };
+  name: string;
+  servings: number;
+  ingredients: RecipeIngredient[];
+  instructions: RecipeInstruction[];
 }
 
 export interface RecipeIngredient {
@@ -23,30 +28,9 @@ export interface RecipeIngredient {
 }
 
 export interface RecipeInstruction {
-  ingredients: RecipeIngredient[];
+  ingredientIndices: number[];
   description: string;
 }
-
-const ingredients: RecipeIngredient[] = Array(4).fill({
-  amount: "100",
-  unit: "g",
-  name: "Mehl",
-});
-
-const recipes: Recipe[] = Array(5).fill({
-  id: uuidv4(),
-  image: img.src,
-  title: "My First Recipe",
-  details: {
-    servings: 3,
-    ingredients,
-    instructions: Array(6).fill({
-      ingredients,
-      description:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
-    }),
-  },
-} as Recipe);
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
@@ -83,7 +67,7 @@ export default function App(props: AppProps) {
         }}
       >
         <UserProvider>
-          <Component {...pageProps} recipes={recipes} />
+          <Component {...pageProps} />
         </UserProvider>
       </MantineProvider>
     </>

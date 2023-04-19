@@ -37,6 +37,9 @@ dependencies:
   '@types/react-dom':
     specifier: 18.0.11
     version: 18.0.11
+  bson:
+    specifier: ^5.2.0
+    version: 5.2.0
   eslint:
     specifier: 8.37.0
     version: 8.37.0

@@ -1,12 +1,16 @@
 import React, { FC } from "react";
 import { Badge, Card, Flex, Grid, Text } from "@mantine/core";
-import { RecipeInstruction } from "@/pages/_app";
+import { RecipeIngredient, RecipeInstruction } from "@/pages/_app";
 
 interface InstructionsProps {
   instructions: RecipeInstruction[];
+  ingredients: RecipeIngredient[];
 }
 
-export const Instructions: FC<InstructionsProps> = ({ instructions }) => {
+export const Instructions: FC<InstructionsProps> = ({
+  instructions,
+  ingredients,
+}) => {
   return (
     <>
       <h3>Schritte</h3>
@@ -24,12 +28,12 @@ export const Instructions: FC<InstructionsProps> = ({ instructions }) => {
                 </Grid.Col>
                 <Grid.Col span={8}>
                   <Flex justify="flex-end" wrap="wrap" gap="xs">
-                    {instruction.ingredients.map((ingredient, index) => {
+                    {instruction.ingredientIndices.map((index) => {
                       return (
                         <Badge key={index} variant="outline">
                           <Text color="black">
-                            {ingredient.amount} {ingredient.unit}{" "}
-                            {ingredient.name}
+                            {ingredients[index].amount}{" "}
+                            {ingredients[index].unit} {ingredients[index].name}
                           </Text>
                         </Badge>
                       );

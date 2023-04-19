@@ -3,11 +3,11 @@ import React from "react";
 import { NavBar } from "../../components/NavBar";
 import { Header } from "../../components/LandingPage/Header";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import { RecipeList } from "../../components/RecipeList/RecipeList";
-import { Recipe } from "@/pages/_app";
 import { LoadingPage } from "../../components/LoadingPage";
+import { useRouter } from "next/router";
 
-export default function Home({ recipes }: { recipes: Recipe[] }) {
+export default function Home() {
+  const router = useRouter();
   const { user, isLoading } = useUser();
 
   if (!user && isLoading) {
@@ -15,7 +15,7 @@ export default function Home({ recipes }: { recipes: Recipe[] }) {
   }
 
   if (user) {
-    return <RecipeList recipes={recipes} />;
+    router.push("/recipes");
   }
 
   return (

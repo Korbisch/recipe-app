@@ -1,37 +1,24 @@
-import React from "react";
-import { RecipeCard } from "./RecipeCard";
-import { Button, Container, Grid } from "@mantine/core";
-import { IconPlus } from "@tabler/icons-react";
-import { NavBar } from "../NavBar";
-import Link from "next/link";
 import { Recipe } from "@/pages/_app";
-
-// TODO: checkboxes next to ingredients for cook mode
+import { randomId } from "@mantine/hooks";
+import React from "react";
+import { Grid } from "@mantine/core";
+import Link from "next/link";
+import { RecipeCard } from "./RecipeCard";
 
 export const RecipeList = ({ recipes }: { recipes: Recipe[] }) => {
   return (
-    <>
-      <NavBar />
-      <Container my="md">
-        <h2>Deine Rezepte</h2>
-        <Link href={"/add-recipe"} style={{ textDecoration: "none" }}>
-          <Button leftIcon={<IconPlus />} variant="default" mb={20}>
-            Rezept hinzufügen
-          </Button>
-        </Link>
-        <Grid>
-          {recipes.map((recipe) => (
-            <Grid.Col key={recipe.id} span={6} md={3} lg={3}>
-              <Link
-                href={`/recipe-details/${encodeURIComponent(recipe.id)}`}
-                style={{ textDecoration: "none" }}
-              >
-                <RecipeCard image={recipe.image} title={recipe.title} />
-              </Link>
-            </Grid.Col>
-          ))}
-        </Grid>
-      </Container>
-    </>
+    <Grid>
+      {recipes.map((recipe) => (
+        <Grid.Col key={randomId()} span={6} md={3} lg={3}>
+          <Link
+            style={{ textDecoration: "none" }}
+            href={`/recipes/${recipe._id}`}
+            as={`/recipes/${recipe._id}`}
+          >
+            <RecipeCard image={recipe.image} title={recipe.name} />
+          </Link>
+        </Grid.Col>
+      ))}
+    </Grid>
   );
 };
