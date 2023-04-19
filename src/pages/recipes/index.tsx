@@ -1,19 +1,17 @@
 import React from "react";
 import { Button, Container } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
-import { NavBar } from "../../components/NavBar";
+import { NavBar } from "../../../components/NavBar";
 import Link from "next/link";
-import { User } from "@/pages/_app";
+import { Recipe } from "@/pages/_app";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
-import { RecipeList } from "../../components/RecipeList/RecipeList";
+import { RecipeList } from "../../../components/RecipeList/RecipeList";
 
 export default withPageAuthRequired(function Recipes({
-  users,
+  recipes,
 }: {
-  users: User;
+  recipes: Recipe[];
 }) {
-  const recipes = users.recipes;
-
   return (
     <>
       <NavBar />
@@ -33,9 +31,9 @@ export default withPageAuthRequired(function Recipes({
 export async function getServerSideProps() {
   try {
     const response = await fetch(`${process.env.BASE_URL}/api/recipes`);
-    const users = await response.json();
+    const recipes = await response.json();
 
-    return { props: { users } };
+    return { props: { recipes } };
   } catch (e) {
     console.error(e);
   }

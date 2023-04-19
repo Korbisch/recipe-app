@@ -1,22 +1,31 @@
 import { Recipe } from "@/pages/_app";
-import { randomId } from "@mantine/hooks";
-import React from "react";
-import { Grid } from "@mantine/core";
-import Link from "next/link";
+import React, { useEffect } from "react";
+import { Grid, UnstyledButton } from "@mantine/core";
 import { RecipeCard } from "./RecipeCard";
+import { useRouter } from "next/router";
+import { useRecipeContext } from "../../state/useRecipeContext";
 
 export const RecipeList = ({ recipes }: { recipes: Recipe[] }) => {
+  const router = useRouter();
+  const { setRecipes } = useRecipeContext();
+
+  useEffect(() => {
+    setRecipes(recipes);
+  }, [recipes, setRecipes]);
+
   return (
     <Grid>
       {recipes.map((recipe) => (
-        <Grid.Col key={randomId()} span={6} md={3} lg={3}>
-          <Link
-            style={{ textDecoration: "none" }}
-            href={`/recipes/${recipe._id}`}
-            as={`/recipes/${recipe._id}`}
+        <Grid.Col key={recipe._id} span={6} md={3} lg={3}>
+          <UnstyledButton
+            onClick={() =>
+              router.push(`/recipes/${recipe._id}`, undefined, {
+                shallow: true,
+              })
+            }
           >
             <RecipeCard image={recipe.image} title={recipe.name} />
-          </Link>
+          </UnstyledButton>
         </Grid.Col>
       ))}
     </Grid>

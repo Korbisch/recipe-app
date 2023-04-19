@@ -1,4 +1,4 @@
-import clientPromise from "../../../lib/mongodb";
+import clientPromise from "../../../../lib/mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
@@ -9,9 +9,9 @@ export default async function handler(
     const client = await clientPromise;
     const db = client.db("test");
 
-    const users = await db.collection("users").findOne({});
+    const recipes = await db.collection("recipes").find({}).toArray();
 
-    res.json(users);
+    res.json(recipes);
   } catch (e) {
     console.error(e);
   }

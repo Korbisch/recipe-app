@@ -5,17 +5,22 @@ import { Servings } from "../../../components/RecipeDetails/Servings";
 import { Ingredients } from "../../../components/RecipeDetails/Ingredients";
 import { Instructions } from "../../../components/RecipeDetails/Instructions";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
-import { Recipe } from "@/pages/_app";
 import { TitleWithBackButton } from "../../../components/TitleWithBackButton";
-import { GetServerSidePropsContext } from "next";
+import { useRecipeContext } from "../../../state/useRecipeContext";
+import { useRouter } from "next/router";
 
-interface RecipeDetailsPageProps {
-  recipe: Recipe;
-}
+export default withPageAuthRequired(function RecipeDetailsPage() {
+  const router = useRouter();
+  const recipeId = router.query.id;
 
-export default withPageAuthRequired(function RecipeDetailsPage({
-  recipe,
-}: RecipeDetailsPageProps) {
+  const { recipes } = useRecipeContext();
+  const recipe = recipes?.find((recipe) => recipe._id === recipeId);
+
+  // TODO: error page
+  if (!recipe) {
+    return <></>;
+  }
+
   return (
     <>
       <NavBar />
@@ -39,16 +44,3 @@ export default withPageAuthRequired(function RecipeDetailsPage({
     </>
   );
 });
-
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  try {
-    const response = await fetch(
-      `${process.env.BASE_URL}/api/recipes/${context.params?.id}`
-    );
-    const recipe = await response.json();
-
-    return { props: { recipe } };
-  } catch (e) {
-    console.error(e);
-  }
-}
