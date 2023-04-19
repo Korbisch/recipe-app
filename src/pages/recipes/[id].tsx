@@ -43,7 +43,7 @@ export default withPageAuthRequired(function RecipeDetailsPage({
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   try {
     const response = await fetch(
-      `http://localhost:3000/api/recipes/${context.params?.id}`
+      `${process.env.BASE_URL}/api/recipes/${context.params?.id}`
     );
     const recipe = await response.json();
 

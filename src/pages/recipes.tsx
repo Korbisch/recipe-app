@@ -32,7 +32,7 @@ export default withPageAuthRequired(function Recipes({
 
 export async function getServerSideProps() {
   try {
-    const response = await fetch("http://localhost:3000/api/recipes");
+    const response = await fetch(`${process.env.BASE_URL}/api/recipes`);
     const users = await response.json();
 
     return { props: { users } };
