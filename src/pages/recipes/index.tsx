@@ -11,6 +11,7 @@ export default withPageAuthRequired(function Recipes({
 }: {
   recipes: Recipe[];
 }) {
+  console.log(recipes);
   return (
     <>
       <h2>Deine Rezepte</h2>
@@ -24,9 +25,12 @@ export default withPageAuthRequired(function Recipes({
   );
 });
 
-export async function getServerSideProps() {
+// @ts-ignore
+export async function getServerSideProps(context) {
   try {
-    const response = await fetch(`${process.env.BASE_URL}/api/recipes`);
+    const response = await fetch(`${process.env.BASE_URL}/api/recipes`, {
+      headers: { cookie: context.req.headers.cookie },
+    });
     const recipes = await response.json();
 
     return { props: { recipes } };
