@@ -11,7 +11,6 @@ export default withPageAuthRequired(function Recipes({
 }: {
   recipes: Recipe[];
 }) {
-  console.log(recipes);
   return (
     <>
       <h2>Deine Rezepte</h2>

@@ -40,7 +40,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({ image, title }) => {
 
   return (
     <Card withBorder radius="md" p="md" className={classes.card}>
-      <Card.Section withBorder>
+      <Card.Section withBorder miw={169}>
         {image ? (
           <Image src={image} alt={title} height={180} />
         ) : (

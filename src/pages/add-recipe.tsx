@@ -8,6 +8,7 @@ import { randomId } from "@mantine/hooks";
 import { IngredientInputSection } from "../../components/AddRecipe/IngredientInputSection/IngredientInputSection";
 import { ServingInputSection } from "../../components/AddRecipe/ServingInputSection";
 import { InstructionInputSection } from "../../components/AddRecipe/InstructionInputSection/InstructionInputSection";
+import { useRouter } from "next/router";
 
 export interface FormValues {
   servings: number;
@@ -26,6 +27,7 @@ export interface FormValues {
 }
 
 export default withPageAuthRequired(function AddRecipe() {
+  const router = useRouter();
   const defaultIngredientValues = {
     amount: "",
     unit: "",
@@ -51,10 +53,17 @@ export default withPageAuthRequired(function AddRecipe() {
     },
   });
 
+  const handleSubmit = (values: FormValues) => {
+    fetch(`/api/recipes`, {
+      method: "POST",
+      body: JSON.stringify(values),
+    }).then(() => router.push("/"));
+  };
+
   return (
     <>
       <TitleWithBackButton title="Neues Rezept" />
-      <form onSubmit={form.onSubmit((values) => console.log(values))}>
+      <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
         <TextInput
           label="Name"
           icon={<IconSalad />}
