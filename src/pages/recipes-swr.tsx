@@ -1,28 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Button } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
 import Link from "next/link";
-import { Recipe } from "@/pages/_app";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import { RecipeList } from "../../components/RecipeList/RecipeList";
+import useSWR from "swr";
+import { Recipe } from "@/pages/_app";
 import { LoadingPage } from "../../components/LoadingPage";
 
+// @ts-ignore
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
+
 export default withPageAuthRequired(function Recipes() {
-  const [recipes, setRecipes] = useState<Recipe[]>();
-  const [isLoading, setLoading] = useState(false);
+  const { recipes, error, isLoading } = useRecipes();
 
-  useEffect(() => {
-    setLoading(true);
-    fetch(`/api/recipes`)
-      .then((res) => res.json())
-      .then((data) => {
-        setRecipes(data);
-        setLoading(false);
-      });
-  }, []);
-
-  if (isLoading) return <LoadingPage />;
-  if (!recipes) return <p>No profile data</p>;
+  if (isLoading || !recipes) return <LoadingPage />;
+  if (error) return <p>Error</p>;
 
   return (
     <>
@@ -36,3 +29,12 @@ export default withPageAuthRequired(function Recipes() {
     </>
   );
 });
+
+export const useRecipes = () => {
+  const { data, isLoading, error } = useSWR<Recipe[], any>(
+    "/api/recipes",
+    fetcher
+  );
+
+  return { recipes: data, isLoading, error };
+};
