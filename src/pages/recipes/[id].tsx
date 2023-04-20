@@ -1,5 +1,4 @@
 import React from "react";
-import { Image } from "@mantine/core";
 import { Servings } from "../../../components/RecipeDetails/Servings";
 import { Ingredients } from "../../../components/RecipeDetails/Ingredients";
 import { Instructions } from "../../../components/RecipeDetails/Instructions";
@@ -7,8 +6,18 @@ import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import { TitleWithBackButton } from "../../../components/TitleWithBackButton";
 import { useRecipeContext } from "../../../state/useRecipeContext";
 import { useRouter } from "next/router";
+import Image from "next/image";
+import { createStyles } from "@mantine/core";
+
+const useStyles = createStyles(() => ({
+  image: {
+    marginBottom: 20,
+    borderRadius: "md",
+  },
+}));
 
 export default withPageAuthRequired(function RecipeDetailsPage() {
+  const { classes } = useStyles();
   const router = useRouter();
   const recipeId = router.query.id;
 
@@ -26,9 +35,11 @@ export default withPageAuthRequired(function RecipeDetailsPage() {
       {recipe.image && (
         <Image
           src={recipe.image}
-          mb={20}
-          radius="md"
-          alt={`Bild des Rezept ${recipe.name}`}
+          width={358}
+          height={358}
+          className={classes.image}
+          alt={recipe.name}
+          priority
         />
       )}
       <Servings count={recipe.servings} />

@@ -1,14 +1,7 @@
-import {
-  Card,
-  Image,
-  Text,
-  Group,
-  createStyles,
-  rem,
-  Center,
-} from "@mantine/core";
+import { Card, Text, Group, createStyles, rem, Center } from "@mantine/core";
 import React from "react";
 import { IconSalad } from "@tabler/icons-react";
+import Image from "next/image";
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -42,7 +35,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({ image, title }) => {
     <Card withBorder radius="md" p="md" className={classes.card}>
       <Card.Section withBorder miw={169}>
         {image ? (
-          <Image src={image} alt={title} height={180} />
+          <Image src={image} alt={title} height={180} width={170} />
         ) : (
           <Center>
             <IconSalad
