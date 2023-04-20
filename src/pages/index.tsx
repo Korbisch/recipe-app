@@ -2,7 +2,7 @@ import Head from "next/head";
 import React from "react";
 import { Header } from "../../components/LandingPage/Header";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import { LoadingPage } from "../../components/LoadingPage";
+import { LoadingBars } from "../../components/LoadingBars";
 import { useRouter } from "next/router";
 
 export default function Home() {
@@ -10,7 +10,7 @@ export default function Home() {
   const { user, isLoading } = useUser();
 
   if (!user && isLoading) {
-    return <LoadingPage />;
+    return <LoadingBars />;
   }
 
   if (user) {

@@ -2,15 +2,18 @@ import React from "react";
 import { Button } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
 import Link from "next/link";
-import { Recipe } from "@/pages/_app";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import { RecipeList } from "../../../components/RecipeList/RecipeList";
+import useSWR from "swr";
+import { Recipe } from "@/pages/_app";
+import { LoadingBars } from "../../../components/LoadingBars";
 
-export default withPageAuthRequired(function Recipes({
-  recipes,
-}: {
-  recipes: Recipe[];
-}) {
+export default withPageAuthRequired(function Recipes() {
+  const { recipes, error, isLoading } = useRecipes();
+
+  if (isLoading || !recipes) return <LoadingBars />;
+  if (error) return <p>Error</p>;
+
   return (
     <>
       <h2>Deine Rezepte</h2>
@@ -24,20 +27,8 @@ export default withPageAuthRequired(function Recipes({
   );
 });
 
-// @ts-ignore
-export async function getServerSideProps(context) {
-  context.res.setHeader(
-    "Cache-Control",
-    "public, s-maxage=10, stale-while-revalidate=59"
-  );
-  try {
-    const response = await fetch(`${process.env.BASE_URL}/api/recipes`, {
-      headers: { cookie: context.req.headers.cookie },
-    });
-    const recipes = await response.json();
+export const useRecipes = () => {
+  const { data, isLoading, error } = useSWR<Recipe[], any>("/api/recipes");
 
-    return { props: { recipes } };
-  } catch (e) {
-    console.error(e);
-  }
-}
+  return { recipes: data, isLoading, error };
+};

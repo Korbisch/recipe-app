@@ -5,6 +5,7 @@ import { MantineProvider } from "@mantine/core";
 import React from "react";
 import { RecipeProvider } from "../../state/useRecipeContext";
 import { Layout } from "../../components/Layout";
+import { SWRConfig } from "swr";
 
 export interface User {
   id: string;
@@ -69,11 +70,15 @@ export default function App(props: AppProps) {
         }}
       >
         <UserProvider>
-          <RecipeProvider>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </RecipeProvider>
+          <SWRConfig
+            value={{ fetcher: (url) => fetch(url).then((res) => res.json()) }}
+          >
+            <RecipeProvider>
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            </RecipeProvider>
+          </SWRConfig>
         </UserProvider>
       </MantineProvider>
     </>
