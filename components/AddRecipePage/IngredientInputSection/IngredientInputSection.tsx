@@ -3,9 +3,9 @@ import React from "react";
 import { IconPlus } from "@tabler/icons-react";
 import { randomId } from "@mantine/hooks";
 import { UseFormReturnType } from "@mantine/form";
-import { FormValues } from "@/pages/add-recipe";
 import { RecipeIngredient } from "@/pages/_app";
 import { IngredientInputForm } from "./IngredientInputForm";
+import { FormValues } from "../AddRecipePage";
 
 export enum IngredientInputGridColumns {
   first = 2,

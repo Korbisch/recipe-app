@@ -10,7 +10,7 @@ import {
 import { IconTrash } from "@tabler/icons-react";
 import React from "react";
 import { UseFormReturnType } from "@mantine/form";
-import { FormValues } from "@/pages/add-recipe";
+import { FormValues } from "../AddRecipePage";
 
 export const InstructionInputForm = (props: {
   form: UseFormReturnType<FormValues, (values: FormValues) => FormValues>;

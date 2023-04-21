@@ -2,9 +2,9 @@ import { Button } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
 import React from "react";
 import { UseFormReturnType } from "@mantine/form";
-import { FormValues } from "@/pages/add-recipe";
 import { InstructionInputForm } from "./InstructionInputForm";
 import { randomId } from "@mantine/hooks";
+import { FormValues } from "../AddRecipePage";
 
 export const InstructionInputSection = (props: {
   form: UseFormReturnType<FormValues, (values: FormValues) => FormValues>;

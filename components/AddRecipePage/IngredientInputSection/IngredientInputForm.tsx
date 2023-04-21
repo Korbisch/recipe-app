@@ -2,8 +2,8 @@ import { ActionIcon, createStyles, Grid, TextInput } from "@mantine/core";
 import React from "react";
 import { UseFormReturnType } from "@mantine/form";
 import { IconTrash } from "@tabler/icons-react";
-import { FormValues } from "@/pages/add-recipe";
 import { IngredientInputGridColumns } from "./IngredientInputSection";
+import { FormValues } from "../AddRecipePage";
 
 const useStyles = createStyles(() => ({
   center: {

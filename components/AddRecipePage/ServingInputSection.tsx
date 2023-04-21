@@ -2,7 +2,7 @@ import { UseFormReturnType } from "@mantine/form";
 import { ActionIcon, Group, NumberInput, rem, Text } from "@mantine/core";
 import { IconMinus, IconPlus, IconUsers } from "@tabler/icons-react";
 import React from "react";
-import { FormValues } from "@/pages/add-recipe";
+import { FormValues } from "./AddRecipePage";
 
 export function ServingInputSection({
   form,
